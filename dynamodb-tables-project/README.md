@@ -28,7 +28,13 @@ Added first student:
 - **StudentName:** Sharon
 - **ProjectsComplete:** 4
 
-![AWSstudents table screenshot]
+<img width="1366" height="768" alt="createtable" src="https://github.com/user-attachments/assets/9e1ea5d9-e78d-4355-b5f8-d1ebd02fd872" />
+
+<img width="1366" height="768" alt="readcapacity" src="https://github.com/user-attachments/assets/040dd4ee-85cd-439b-ad07-da85bb5e5d2e" />
+
+<img width="1366" height="768" alt="attribute added" src="https://github.com/user-attachments/assets/a685a3e9-f3fd-406d-a707-684f7c1651f8" />
+
+
 
 ## Step 2: Create Tables with CloudShell
 
@@ -80,6 +86,9 @@ aws dynamodb create-table \
     --query "TableDescription.TableStatus"
 ```
 
+<img width="1366" height="768" alt="createtablesusingcli" src="https://github.com/user-attachments/assets/ddfc6cc6-4d09-4ce9-a769-f59ce3fe28d0" />
+
+
 Verified tables were created:
 
 ```bash
@@ -89,7 +98,7 @@ aws dynamodb wait table-exists --table-name Post
 aws dynamodb wait table-exists --table-name Comment
 ```
 
-![CloudShell table creation screenshot]
+<img width="1366" height="768" alt="tables created" src="https://github.com/user-attachments/assets/510d9453-9aac-488c-b14a-be8da5c566dd" />
 
 ## Step 3: Load Data
 
@@ -100,6 +109,7 @@ curl -O https://storage.googleapis.com/nextwork_course_resources/courses/aws/AWS
 unzip nextworksampledata.zip
 cd nextworksampledata
 ```
+<img width="1366" height="768" alt="unzipfile" src="https://github.com/user-attachments/assets/71b68f8b-acd6-4752-9d4e-02425f8432ef" />
 
 Loaded data using batch-write-item:
 
@@ -110,7 +120,7 @@ aws dynamodb batch-write-item --request-items file://Post.json
 aws dynamodb batch-write-item --request-items file://Comment.json
 ```
 
-![Data loading screenshot]
+<img width="1366" height="768" alt="more data added" src="https://github.com/user-attachments/assets/5dee18ec-ac3f-4a0c-8611-8bf80cbbc9f0" />
 
 ## Step 4: Explore Table Structure
 
@@ -121,7 +131,7 @@ Examined the `ContentCatalog` table and discovered:
 
 Added a new attribute `StudentsComplete` with value "Sharon" to one Project item, demonstrating how DynamoDB allows different items to have different attributes.
 
-![ContentCatalog table screenshot]
+<img width="1366" height="768" alt="sharonatt" src="https://github.com/user-attachments/assets/1c7adf37-28a3-43f6-8167-a371e02a3679" />
 
 ## Key Learnings
 
