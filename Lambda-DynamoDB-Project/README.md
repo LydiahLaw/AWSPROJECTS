@@ -27,7 +27,6 @@ Set up a DynamoDB table to hold user information.
 - **Partition key:** `userId` (String)
 - **Settings:** Default (no custom capacity settings needed)
 
-![DynamoDB table creation]
 
 Added sample data in JSON format:
 
@@ -41,7 +40,7 @@ Added sample data in JSON format:
 
 The cool thing about DynamoDB? It's schemaless. You can add any attributes you want without defining them first - super flexible compared to traditional databases.
 
-![Sample user data]
+<img width="1366" height="768" alt="createtable" src="https://github.com/user-attachments/assets/f95bbfd4-ad30-40d2-a43e-25efdea1b431" />
 
 ## Step 2: Create Lambda Function
 
@@ -52,7 +51,7 @@ Built a Lambda function to retrieve data from the table.
 - **Runtime:** Node.js (latest version)
 - **Execution role:** Created new role with basic Lambda permissions
 
-![Lambda function creation]
+<img width="1366" height="768" alt="createfunction" src="https://github.com/user-attachments/assets/38f96434-e359-47dd-9913-fa059637b935" />
 
 ## Step 3: Write the Function Code
 
@@ -101,7 +100,7 @@ export { handler };
 
 Deployed the function and moved on to testing.
 
-![Code deployment]
+<img width="1366" height="768" alt="lambdacode" src="https://github.com/user-attachments/assets/ee9ab4bb-5e04-4832-9349-64716146ee0e" />
 
 ## Step 4: First Test - Oops, Access Denied!
 
@@ -122,7 +121,7 @@ is not authorized to perform: dynamodb:GetItem on resource: arn:aws:dynamodb:us-
 
 The function worked fine, but Lambda didn't have permission to read from DynamoDB. Classic AWS moment.
 
-![Access denied error]
+<img width="1366" height="768" alt="error" src="https://github.com/user-attachments/assets/df35f2a4-a7c2-4545-b232-2f18e7fdf76f" />
 
 ## Step 5: Fix Permissions
 
@@ -133,7 +132,7 @@ In IAM, added the `AmazonDynamoDBReadOnlyAccess` policy:
 - Selected `AmazonDynamoDBReadOnlyAccess`
 - This policy includes the `GetItem` permission we needed
 
-![Attaching DynamoDB policy]
+<img width="1366" height="768" alt="permissions added" src="https://github.com/user-attachments/assets/b50fb264-05f0-4889-b669-2fcfa92a61e5" />
 
 ## Step 6: Test Again - Success!
 
@@ -147,7 +146,7 @@ Ran the test again and it worked! Got back the user data:
 }
 ```
 
-![Successful test result]
+<img width="1366" height="768" alt="successfullambda" src="https://github.com/user-attachments/assets/20e38d28-57ff-4e2c-a3b0-5ebf74b69cad" />
 
 ## Secret Mission: Tighten Security
 
@@ -182,9 +181,8 @@ Created a custom inline policy that only allows reading from the `UserData` tabl
 
 Tested the function again - still works perfectly, but now with minimal permissions!
 
-![Custom inline policy]
+<img width="1366" height="768" alt="createnewpolicy security" src="https://github.com/user-attachments/assets/a9012f70-418f-4b9a-b36d-59dfbde2265c" />
 
-![Final test success]
 
 ## Key Learnings
 
@@ -213,14 +211,6 @@ Deleted all resources to avoid charges:
 
 1. **Lambda function:** Actions → Delete → confirmed
 2. **DynamoDB table:** Delete → confirmed (kept CloudWatch alarm deletion checked, skipped backup)
-
-## Tools Used
-
-- AWS Lambda
-- Amazon DynamoDB
-- AWS IAM
-- AWS CloudWatch (auto-configured)
-- AWS SDK for JavaScript
 
 ## Cost
 
